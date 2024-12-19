@@ -15,10 +15,16 @@ return new class extends Migration
             $table->increments('ID_KONTEN');
             $table->string('TITLE');
             $table->text('DESCRIPSION')->nullable();
+            $table->unsignedBigInteger('event_id')-> nullable();
             $table->integer('HARGA_ADULT')->nullable();
             $table->integer('HARGA_CHILD')->nullable();
             $table->string('IMAGE')->nullable();
             $table->timestamps();
+
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('events')
+                ->onDelete('cascade');
         });
     }
 

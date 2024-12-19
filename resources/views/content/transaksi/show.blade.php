@@ -2,7 +2,9 @@
 
 @section('content')
 <div class="container py-5">
-    <h1 class="mb-4">Checkout</h1>
+    <h1 style="font-family: 'Mikado', sans-serif; font-weight: 900; color: #274E13; margin-bottom: 30px; text-align: center;">
+        Checkout
+    </h1>
     <div class="row">
         <div class="col-md-8">
             <div class="card mb-4">

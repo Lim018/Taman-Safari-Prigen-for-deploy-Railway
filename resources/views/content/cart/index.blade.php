@@ -23,7 +23,7 @@
                                         <img src="{{ asset('/assets/images/blog/blog-img1.png') }}" alt="{{ $item->content->TITLE }}" class="img-fluid rounded">
                                     </div>
                                     <div class="col-md-9">
-                                        <h4 style="font-family: 'Mikado', sans-serif; color: #274E13;">{{ $item->content->TITLE }}</h4>
+                                        <h4 style="font-family: 'Mikado', sans-serif; color: #90C659;">{{ $item->content->TITLE }}</h4>
                                         <p class="text-muted">{{ Str::limit($item->content->DESCRIPSION, 100) }}</p>
                                         <p class="text-muted">Tanggal Kunjungan: {{ $item->booking_date->format('d F Y') }}</p>
                                         <p class="mb-2">
@@ -38,7 +38,9 @@
                                             </div>
                                             <p class="h5 mb-0" style="color: #90C659;">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</p>
                                         </div>
-                                        <button onclick="removeItem({{ $item->id }})" class="btn btn-sm btn-outline-danger mt-2">Hapus</button>
+                                        <button onclick="removeItem({{ $item->id }})" class="btn btn-sm btn-primary mt-2">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +62,7 @@
                             @endphp
                             @foreach($groupedItems as $contentId => $items)
                                 <div class="mb-3">
-                                    <h5 style="color: #274E13;">{{ $items->first()->content->TITLE }}</h5>
+                                    <h5 style="color: #90C659;">{{ $items->first()->content->TITLE }}</h5>
                                     @foreach($items as $item)
                                         <div class="d-flex justify-content-between mb-2">
                                             <span>
@@ -79,7 +81,7 @@
                             </div>
                             <form action="{{ route('checkout.process') }}" method="POST">
                                 @csrf
-                                <button type="submit" class="btn btn-primary w-100 mt-3" style="background-color: #274E13; border: none; padding: 15px; font-weight: bold; font-size: 16px;">
+                                <button type="submit" class="btn btn-primary2 w-100 mt-3" style="background-color: #274E13; border: none; padding: 15px; font-weight: bold; font-size: 16px;">
                                     Lanjutkan ke Pembayaran
                                 </button>
                             </form>

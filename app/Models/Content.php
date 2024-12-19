@@ -16,6 +16,7 @@ class Content extends Model
         'TITLE',
         'TITLE2',
         'DESCRIPSION',
+        'event_id',
         'HARGA_ADULT',
         'HARGA_CHILD',
         'IMAGE'
@@ -38,6 +39,11 @@ class Content extends Model
     public function PurchasedTicket()
     {
         return $this->hasMany(PurchasedTicket::class);
+    }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class);
     }
 
 }

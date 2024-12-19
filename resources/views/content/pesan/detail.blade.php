@@ -33,9 +33,9 @@
                                 <h4 style="font-family: 'Mikado', sans-serif; color: #274E13;">Pilih Tanggal Kunjungan</h4>
                                 <div class="calendar-wrapper border rounded p-3">
                                     <div class="d-flex justify-content-between align-items-center mb-3">
-                                        <button class="btn btn-outline-secondary" onclick="previousMonth()">&lt;</button>
+                                        <button class="btn btn-primary" onclick="previousMonth()">&lt;</button>
                                         <h5 class="mb-0" id="currentMonth">December 2024</h5>
-                                        <button class="btn btn-outline-secondary" onclick="nextMonth()">&gt;</button>
+                                        <button class="btn btn-primary" onclick="nextMonth()">&gt;</button>
                                     </div>
                                     <div class="calendar-header d-flex justify-content-between mb-2">
                                         <div class="calendar-cell">MON</div>
@@ -79,9 +79,9 @@
                                             <div class="ticket-price">IDR {{ number_format($ticket->HARGA_ADULT, 0, ',', '.') }}</div>
                                         </div>
                                         <div class="quantity-control d-flex align-items-center">
-                                            <button type="button" class="btn btn-outline-secondary" onclick="updateQuantity('adult', -1)">-</button>
+                                            <button type="button" class="btn btn-primary" onclick="updateQuantity('adult', -1)">-</button>
                                             <input type="number" class="form-control text-center mx-2" style="width: 60px" id="adult_quantity" name="adult_quantity" value="0" readonly>
-                                            <button type="button" class="btn btn-outline-secondary" onclick="updateQuantity('adult', 1)">+</button>
+                                            <button type="button" class="btn btn-primary" onclick="updateQuantity('adult', 1)">+</button>
                                         </div>
                                     </div>
 
@@ -93,9 +93,9 @@
                                             <div class="ticket-price">IDR {{ number_format($ticket->HARGA_CHILD, 0, ',', '.') }}</div>
                                         </div>
                                         <div class="quantity-control d-flex align-items-center">
-                                            <button type="button" class="btn btn-outline-secondary" onclick="updateQuantity('child', -1)">-</button>
-                                            <input type="number" class="form-control text-center mx-2" style="width: 60px" id="child_quantity" name="child_quantity" value="0" readonly>
-                                            <button type="button" class="btn btn-outline-secondary" onclick="updateQuantity('child', 1)">+</button>
+                                            <button type="button" class="btn btn-primary" onclick="updateQuantity('child', -1)">-</button>
+                                            <input type="number" class="form-control text-center mx-2" style="width: 60px;" id="child_quantity" name="child_quantity" value="0" readonly>
+                                            <button type="button" class="btn btn-primary" onclick="updateQuantity('child', 1)">+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -109,9 +109,9 @@
                                 </div>
 
                                 <!-- Add to Cart Button -->
-                                <button type="submit" class="btn btn-primary w-100" id="addToCartBtn" disabled
+                                <button type="submit" class="btn btn-primary2 w-100" id="addToCartBtn" disabled
                                     style="background-color: #274E13; border: none; padding: 15px; font-weight: bold; font-size: 16px;">
-                                    Add To Cart
+                                     <span style="color: ">Add To Cart</span>
                                 </button>
                             </form>
                         </div>

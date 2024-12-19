@@ -26,6 +26,75 @@
         </div>
     </div>
     <!-- Header End -->
+            <h1 class="display-5 mb-4 text-center" style="font-family: 'Mikado', sans-serif; font-weight: 900; margin: 0;" data-wow-delay="0.1s"><span style="color: #90C659;">Buy Ticket Now!</span></h1>
+    <div class="max-w-2xl mx-auto p-6 bg-[#f5f9f5] rounded-lg">
+        {{-- <form action="{{ route('validate.ticket') }}" method="POST">
+            @csrf --}}
+            <div class="p-8 bg-[#f3f7ed] text-center">
+                <!-- Pilihan Tombol -->
+                <div class="flex justify-center gap-8 mb-6 text-gray-700">
+                    <button id="indonesian" class="btn-option">Indonesian (KTP/KITAS)</button>
+                    <button id="foreigner" class="btn-option">Foreigners</button>
+                </div>
+                <br>
+            
+                <!-- Informasi Indonesian -->
+                <div id="info-indonesian" class="space-y-4 text-black hidden">
+                    <div class="font-bold">
+                        For Indonesian nationals with <span class="italic">KTP/Student Card</span> or foreigners with valid KITAS<br>
+                        <span class="text-gray-600 font-medium">
+                            Berlaku untuk warga negara Indonesia dengan KTP/Kartu Pelajar atau orang asing dengan KITAS yang berlaku
+                        </span>
+                    </div>
+                    <div class="font-bold">
+                        1. One (1) <span class="italic">KTP/Student Card/KITAS</span> is valid for one (1) ticket.<br>
+                        <span class="text-gray-600 font-medium">
+                            Satu (1) KTP/Kartu Pelajar/KITAS berlaku untuk satu (1) tiket.
+                        </span>
+                    </div>
+                    <div>
+                        2. Please present either mobile or printed voucher along with your KITAS at the counter for redemption.
+                    </div>
+                    <div>
+                        3. For more information about our promotion and programs, please follow our instagram 
+                        <span class="font-semibold">@tamansafari.prigen</span>.
+                    </div>
+                    <div>
+                        <br>
+                        <a href="/pesan" class="btn btn-primary">Buy Ticket<i class="fa fa-arrow-right ms-3"></i></a>
+                    </div>
+                </div>
+            
+                <!-- Informasi Foreigners -->
+                <div id="info-foreigner" class="space-y-4 text-black hidden">
+                    <div class="font-bold">
+                        For foreign nationals, please prepare a valid passport or travel document.<br>
+                        <span class="text-gray-600 font-medium">
+                            Berlaku untuk warga negara asing, harap siapkan paspor atau dokumen perjalanan yang valid.
+                        </span>
+                    </div>
+                    <div class="font-bold">
+                        1. One (1) passport/travel document is valid for one (1) ticket.<br>
+                        <span class="text-gray-600 font-medium">
+                            Satu (1) paspor/dokumen perjalanan berlaku untuk satu (1) tiket.
+                        </span>
+                    </div>
+                    <div>
+                        2. Please present either mobile or printed voucher at the counter for redemption.
+                    </div>
+                    <div>
+                        3. For more information about our promotion and programs, please follow our instagram 
+                        <span class="font-semibold">@tamansafari.prigen</span>.
+                    </div>
+                    <br>
+                    <a href="/pesan" class="btn btn-primary">Buy Ticket<i class="fa fa-arrow-right ms-3"></i></a>
+                </div>
+            </div>
+            
+        {{-- </form> --}}
+    </div>
+    <br>
+    <br>
 
 
     <!-- Video Modal Start -->
@@ -50,7 +119,7 @@
 
 
     <!-- About Start -->
-    <div class="container-xxl py-5" id="about">
+    {{-- <div class="container-xxl py-5" id="about">
         <div class="container">
             <div class="row g-5">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -70,11 +139,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- About End -->
 
     <!-- Animal Start -->
-    <div class="container-xxl py-5">
+    {{-- <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 mb-5 align-items-end wow fadeInUp" data-wow-delay="0.1s">
                 <div class="col-lg-6">
@@ -163,12 +232,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Animal End -->
 
 
     <!-- Visiting Hours Start -->
-    <div class="container-xxl bg-primary visiting-hours my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
+    {{-- <div class="container-xxl bg-primary visiting-hours my-5 py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-md-12 wow fadeIn" data-wow-delay="0.3s">
@@ -183,38 +252,9 @@
                         @endforeach
                     </ul>
                 </div>
-                {{-- <div class="col-md-6 text-light wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="display-6 text-white mb-5">Contact Info</h1>
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>Office</td>
-                                <td>123 Street, New York, USA</td>
-                            </tr>
-                            <tr>
-                                <td>Zoo</td>
-                                <td>123 Street, New York, USA</td>
-                            </tr>
-                            <tr>
-                                <td>Ticket</td>
-                                <td>
-                                    <p class="mb-2">+012 345 6789</p>
-                                    <p class="mb-0">ticket@example.com</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Support</td>
-                                <td>
-                                    <p class="mb-2">+012 345 6789</p>
-                                    <p class="mb-0">support@example.com</p>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div> --}}
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Visiting Hours End -->
 
 
@@ -276,7 +316,8 @@
     <!-- Testimonial Start -->
     <div class="container-xxl py-5">
         <div class="container">
-            <h1 class="display-5 text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Our Clients Say!</h1>
+            <h1 class="display-5 mb-4 text-center" style="font-family: 'Mikado', sans-serif; font-weight: 900; margin: 0;" data-wow-delay="0.1s"><span style="color: #90C659;">Our Client Say</span></h1>
+            {{-- <h1 class="display-5 text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Our Clients Say!</h1> --}}
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
                 <div class="testimonial-item text-center">
                     {{-- <img class="img-fluid rounded-circle border border-2 p-2 mx-auto mb-4" src="{{ asset('') }}landing/img/testimonial-1.jpg" style="width: 100px; height: 100px;"> --}}

@@ -3,12 +3,12 @@
 @section('content')
 <div class="container py-5">
     <h1 style="font-family: 'Mikado', sans-serif; font-weight: 900; color: #274E13; margin-bottom: 30px;">
-        Dashboard Tiket Saya
+        Dashboard Tiket
     </h1>
 
     @if($purchasedTickets->isEmpty())
         <div class="alert alert-info">
-            Anda belum membeli tiket apapun.
+            Belum ada tiket apapun.
         </div>
     @else
         <div class="row">
@@ -37,7 +37,7 @@
                                 <i class="fas fa-download"></i> Download Tiket
                             </a>
                             <a href="{{ route('ticket.confirm', $ticket->ticket_number) }}" class="btn btn-info btn-sm">
-                                <i class="fas fa-qrcode"></i> Lihat QR Code
+                                <i class="fas fa-qrcode"></i> Konfirmasi Tiket
                             </a>
                         </div>
                     </div>

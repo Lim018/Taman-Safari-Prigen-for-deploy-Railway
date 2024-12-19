@@ -65,7 +65,7 @@
                         seperti harimau putih, panda merah, dan gajah Sumatera. Selain itu, pengunjung juga dapat menikmati berbagai zona rekreasi 
                         dan wahana yang cocok untuk keluarga.
                     </p>
-                    <a href="/contact" class="btn btn-primary">Contact Us</a>
+                    <a class="btn btn-primary py-3 px-5 mt-3" href="https://www.indonesia-tourism.com/east-java/tourism/pasuruan/taman_safari/map/tamansafari_map.png">zoom map</a>
                 </div>
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="img-border">

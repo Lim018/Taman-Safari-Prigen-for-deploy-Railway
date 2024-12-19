@@ -31,6 +31,51 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('') }}landing/css/style.css" rel="stylesheet">
+    <style>
+/* Tombol pilihan */
+.btn-option {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid #90C659;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #90C659;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+.btn-primary {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid #274E13;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #274E13;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-option.active {
+    background-color: #90C659;
+    color: white;
+}
+
+.btn-option:hover {
+    background-color: #77a84c;
+    color: white;
+}
+
+/* Jarak antar tombol */
+.flex {
+    gap: 20px; /* Atur jarak antar tombol */
+}
+
+/* Awalnya sembunyikan elemen informasi */
+.hidden {
+    display: none;
+}
+    </style>
 </head>
 
 <body>
@@ -78,7 +123,7 @@
     <!-- Navbar Start -->
     <div class="sticky-top">
         <!-- Top Bar -->
-        <div class="top-bar py-1 px-4 d-flex justify-content-between align-items-center">
+        {{-- <div class="top-bar py-1 px-4 d-flex justify-content-between align-items-center">
             <div class="left-menu">
                 <a href="https://goo.gl/maps/XwdyTKuF33EJpGJMA" class="me-3">Our Location</a>
                 <span>Ikuti Kami di</span>
@@ -106,7 +151,7 @@
                     </form>
                 @endif
             </div>
-        </div>
+        </div> --}}
         
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg bg-white navbar-light py-lg-0 px-4 px-lg-5 wow fadeIn" data-wow-delay="0.1s">
@@ -122,9 +167,9 @@
                     <a href="/about" class="nav-item nav-link">About</a>
                     <a href="/jadwal" class="nav-item nav-link">Jadwal</a>
                     <a href="service.html" class="nav-item nav-link">Event</a>
-                    <a href="/purchased-tickets" class="nav-item nav-link">My Tickets</a>
+                    {{-- <a href="/purchased-tickets" class="nav-item nav-link">My Tickets</a> --}}
                 </div>
-                <a href="/pesan" class="btn btn-primary">Buy Ticket<i class="fa fa-arrow-right ms-3"></i></a>
+                <a href="/purchased-tickets" class="btn btn-primary">My Tickets<i class="fa fa-arrow-right ms-3"></i></a>
             </div>
         </nav>
     </div>
@@ -196,6 +241,35 @@
 
 
     <!-- JavaScript Libraries -->
+    <script>
+// Ambil elemen tombol dan div informasi
+const indonesianButton = document.getElementById('indonesian');
+const foreignerButton = document.getElementById('foreigner');
+const infoIndonesian = document.getElementById('info-indonesian');
+const infoForeigner = document.getElementById('info-foreigner');
+
+// Fungsi untuk mengatur visibilitas elemen dan status tombol
+function toggleInfoSection(activeButton, inactiveButton, activeInfo, inactiveInfo) {
+    activeButton.classList.add('active');
+    inactiveButton.classList.remove('active');
+    activeInfo.classList.remove('hidden');
+    inactiveInfo.classList.add('hidden');
+}
+
+// Event listener untuk tombol Indonesian
+indonesianButton.addEventListener('click', () => {
+    toggleInfoSection(indonesianButton, foreignerButton, infoIndonesian, infoForeigner);
+});
+
+// Event listener untuk tombol Foreigner
+foreignerButton.addEventListener('click', () => {
+    toggleInfoSection(foreignerButton, indonesianButton, infoForeigner, infoIndonesian);
+});
+
+// Awalnya sembunyikan kedua bagian informasi
+infoIndonesian.classList.add('hidden');
+infoForeigner.classList.add('hidden');
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('landing/lib/wow/wow.min.js') }}"></script>

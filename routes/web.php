@@ -8,6 +8,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\PesanController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\PagesController;
@@ -16,10 +17,15 @@ use App\Http\Controllers\QrScannerController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\testcontroller;
 use App\Http\Controllers\TicketConfirmationController;
+use App\Models\Event;
 use App\Models\PurchasedTicket;
 
 //pages
 Route::get('/', [PagesController::class, 'index']);
+// Route::get('/', function () {
+//     $events = Event::orderBy('start_date')->get();
+//     return view('pages.welcome', compact('events'));
+// });
 Route::get('/about', [PagesController::class, 'about']);
 Route::get('/jadwal', [PagesController::class, 'jadwal']);
 
@@ -96,6 +102,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/checkout/{transaksi}/failed', [CheckoutController::class, 'failed'])->name('checkout.failed');
 
 
+    // Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('events', EventController::class);
     Route::get('/tickets', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/purchased-tickets', [PurchasedTicketController::class, 'index'])->name('purchased-tickets.index');
     Route::get('/purchased-tickets/{id}/download', [PurchasedTicketController::class, 'download'])->name('purchased-tickets.download');

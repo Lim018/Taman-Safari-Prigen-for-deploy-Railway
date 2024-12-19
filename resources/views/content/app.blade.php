@@ -19,6 +19,40 @@
 <link rel="stylesheet" href="{{ asset('') }}assets/css/styles.css" />
 
   <title>Spike Bootstrap Admin</title>
+  <style>
+    .btn-primary {
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid #274E13;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #274E13;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-primary:hover {
+    background-color: #274E13;
+    color: white;
+    }
+    .btn-primary2 {
+    padding: 5px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: 2px solid #274E13;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    }
+
+    .btn-primary2:hover {
+    background-color: #274E13;
+    color: white;
+    }
+  </style>
 </head>
 
 <body>
@@ -83,6 +117,16 @@
                             <span class="fs-2 d-block text-dark">Kelola Jadwal</span>
                           </div>
                         </a>
+                        <a href="/tickets"
+                          class="d-flex align-items-center pb-9 position-relative text-decoration-none text-decoration-none text-decoration-none text-decoration-none">
+                          <div class="bg-light-subtle rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                            <img src="{{ asset('/assets/images/svgs/icon-dd-application.svg') }}" alt="" class="img-fluid" width="24" height="24">
+                          </div>
+                          <div class="d-inline-block">
+                            <h6 class="mb-1 fw-semibold bg-hover-primary">Purchased Tickets</h6>
+                            <span class="fs-2 d-block text-dark">Kelola Tiket Terjual</span>
+                          </div>
+                        </a>
                         </div>
                       </div>
                     </div>
@@ -98,9 +142,9 @@
             <a class="nav-link" href="/dashboard">Dashboard Admin</a>
         </li>
         @endif
-        <li class="nav-item dropdown-hover d-none d-lg-block">
-            <a class="nav-link" href="/purchased-tickets">My Ticket</a>
-        </li>
+        {{-- <li class="nav-item dropdown-hover d-none d-lg-block">
+            <a class="nav-link" href="/tickets"></a>
+        </li> --}}
       </ul>
 
       <div class="d-block d-lg-none">
