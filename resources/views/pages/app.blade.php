@@ -166,7 +166,7 @@
                     <a href="/" class="nav-item nav-link active">Home</a>
                     <a href="/about" class="nav-item nav-link">About</a>
                     <a href="/jadwal" class="nav-item nav-link">Jadwal</a>
-                    <a href="service.html" class="nav-item nav-link">Event</a>
+                    {{-- <a href="service.html" class="nav-item nav-link">Event</a> --}}
                     {{-- <a href="/purchased-tickets" class="nav-item nav-link">My Tickets</a> --}}
                 </div>
                 <a href="/purchased-tickets" class="btn btn-primary">My Tickets<i class="fa fa-arrow-right ms-3"></i></a>
@@ -270,6 +270,8 @@ foreignerButton.addEventListener('click', () => {
 infoIndonesian.classList.add('hidden');
 infoForeigner.classList.add('hidden');
     </script>
+
+@stack('scripts')
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('landing/lib/wow/wow.min.js') }}"></script>

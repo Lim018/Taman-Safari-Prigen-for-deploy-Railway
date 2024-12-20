@@ -23,7 +23,12 @@
                                         <img src="{{ asset('/assets/images/blog/blog-img1.png') }}" alt="{{ $item->content->TITLE }}" class="img-fluid rounded">
                                     </div>
                                     <div class="col-md-9">
-                                        <h4 style="font-family: 'Mikado', sans-serif; color: #90C659;">{{ $item->content->TITLE }}</h4>
+                                        <h4 style="font-family: 'Mikado', sans-serif; color: #90C659; position: relative;">
+                                            {{ $item->content->TITLE }}
+                                        </h4>
+                                        <button onclick="removeItem({{ $item->id }})" class="btn btn-sm btn-primary mt-2 btn-equal trash-btn">
+                                            <i class="fa fa-times"></i>
+                                        </button>
                                         <p class="text-muted">{{ Str::limit($item->content->DESCRIPSION, 100) }}</p>
                                         <p class="text-muted">Tanggal Kunjungan: {{ $item->booking_date->format('d F Y') }}</p>
                                         <p class="mb-2">
@@ -31,16 +36,20 @@
                                             {{ $item->ticket_type === 'adult' ? 'Dewasa' : 'Anak-anak' }}
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <div class="input-group" style="max-width: 200px;">
-                                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity({{ $item->id }}, -1)" style="border-color: #274E13;">-</button>
-                                                <input type="text" class="form-control text-center" value="{{ $item->quantity }}" id="quantity-{{ $item->id }}" readonly style="border-color: #274E13;">
-                                                <button class="btn btn-outline-secondary" type="button" onclick="updateQuantity({{ $item->id }}, 1)" style="border-color: #274E13;">+</button>
+                                            <div class="input-group" style="max-width: 140px;">
+                                                <button class="btn btn-primary btn-equal" type="button" onclick="updateQuantity({{ $item->id }}, -1)">
+                                                    -
+                                                </button>
+                                                <input type="text" class="form-control text-center quantity-input mx-2" value="{{ $item->quantity }}" id="quantity-{{ $item->id }}" readonly>
+                                                <button class="btn btn-primary btn-equal" type="button" onclick="updateQuantity({{ $item->id }}, 1)">
+                                                    +
+                                                </button>
                                             </div>
                                             <p class="h5 mb-0" style="color: #90C659;">Rp {{ number_format($item->price * $item->quantity, 0, ',', '.') }}</p>
                                         </div>
-                                        <button onclick="removeItem({{ $item->id }})" class="btn btn-sm btn-primary mt-2">
+                                        {{-- <button onclick="removeItem({{ $item->id }})" class="btn btn-sm btn-primary mt-2 btn-equal">
                                             <i class="fa fa-trash"></i>
-                                        </button>
+                                        </button> --}}
                                     </div>
                                 </div>
                             </div>
@@ -92,6 +101,46 @@
         </div>
     </section>
 
+    <style>
+        .btn-equal {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-color: #274E13;
+        }
+    
+
+        .quantity-input {
+        /* width: 40px; Sesuaikan dengan tombol */
+        height: 40px; /* Sesuaikan dengan tombol */
+        text-align: center;
+        border: 2px solid #274E13; /* Warna dan ketebalan border */
+        padding: 0;
+        box-sizing: border-box; /* Pastikan padding tidak memengaruhi ukuran */
+    }
+
+    .trash-btn {
+        position: absolute;
+        top: 10px; /* Sesuaikan dengan kebutuhan */
+        right: 10px; /* Sesuaikan dengan kebutuhan */
+        z-index: 10; /* Pastikan tombol tidak terhalang elemen lain */
+        /* background-color: #dc3545; Warna merah */
+        border: #dc3545;
+        color: #dc3545;
+        padding: 5px 10px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 5px; /* Untuk tampilan lebih menarik */
+    }
+
+    .trash-btn:hover { 
+        background-color: white;
+        color: #dc3545;
+    }
+    </style>
+    
     <script>
         function updateQuantity(itemId, change) {
             fetch(`/cart/update/${itemId}`, {

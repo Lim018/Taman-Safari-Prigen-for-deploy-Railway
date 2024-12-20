@@ -127,6 +127,16 @@
                             <span class="fs-2 d-block text-dark">Kelola Tiket Terjual</span>
                           </div>
                         </a>
+                        <a href="/events"
+                          class="d-flex align-items-center pb-9 position-relative text-decoration-none text-decoration-none text-decoration-none text-decoration-none">
+                          <div class="bg-light-subtle rounded-1 me-3 p-6 d-flex align-items-center justify-content-center">
+                            <img src="{{ asset('/assets/images/svgs/icon-dd-application.svg') }}" alt="" class="img-fluid" width="24" height="24">
+                          </div>
+                          <div class="d-inline-block">
+                            <h6 class="mb-1 fw-semibold bg-hover-primary">Events</h6>
+                            <span class="fs-2 d-block text-dark">Kelola Event</span>
+                          </div>
+                        </a>
                         </div>
                       </div>
                     </div>

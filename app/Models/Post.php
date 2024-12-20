@@ -11,22 +11,22 @@ class Post extends Model
 
     protected $table = 'posts';
     protected $primaryKey = 'POSTING_ID';
-    
+
     protected $fillable = [
         'SENDER',
         'MESSAGE_TEXT',
         'CREATE_BY',
+        'CREATE_DATE',
         'DELETE_MARK',
-        'UPDATE_BY'
+        'UPDATE_BY',
+        'UPDATE_DATE',
     ];
 
-    protected $dates = [
-        'CREATE_DATE',
-        'UPDATE_DATE'
-    ];
+    public $timestamps = false;
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'SENDER');
+        return $this->belongsTo(User::class, 'SENDER', 'ID_USER');
     }
 }
+

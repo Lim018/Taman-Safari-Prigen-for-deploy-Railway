@@ -16,12 +16,19 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\QrScannerController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\testcontroller;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\TicketConfirmationController;
 use App\Models\Event;
+use App\Models\Post;
 use App\Models\PurchasedTicket;
 
 //pages
-Route::get('/', [PagesController::class, 'index']);
+// Route::get('/', [PagesController::class, 'index']);
+Route::get('/', function () {
+    $events = Event::orderBy('start_date')->get();
+    $testimonials = Post::all();
+    return view('pages.index', compact('events', 'testimonials'));
+});
 // Route::get('/', function () {
 //     $events = Event::orderBy('start_date')->get();
 //     return view('pages.welcome', compact('events'));
@@ -109,17 +116,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/purchased-tickets/{id}/download', [PurchasedTicketController::class, 'download'])->name('purchased-tickets.download');
     // Route::get('/transactions', [TransactionController::class, 'index'])->name("transactions");
 
+
+    
     //posts
     // Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
     // Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like');
     // Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
     // // routes/web.php
     // Route::post('/download-stock', [AuthController::class, 'downloadStock'])->name('download.stock');
-
+    
     // Route::resource('content', ContentController::class);
-
+    
 });
 
+Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
+Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
 Route::get('/ticket/confirm/{ticket}', [TicketConfirmationController::class, 'show'])->name('ticket.confirm');
 Route::post('/ticket/confirm/{ticket}', [TicketConfirmationController::class, 'confirm'])->name('ticket.confirm.post');
 

@@ -55,6 +55,7 @@
                         </form>
                     @else
                         <div class="alert alert-info">This ticket has already been used.</div>
+                        <a href="/testimonials/create">Beri Testimoni</a>
                     @endif
                 </div>
             </div>

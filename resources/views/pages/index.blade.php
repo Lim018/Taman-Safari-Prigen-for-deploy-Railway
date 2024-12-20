@@ -313,47 +313,53 @@
     <!-- Membership End -->
 
 
-    <!-- Testimonial Start -->
     <div class="container-xxl py-5">
         <div class="container">
             <h1 class="display-5 mb-4 text-center" style="font-family: 'Mikado', sans-serif; font-weight: 900; margin: 0;" data-wow-delay="0.1s"><span style="color: #90C659;">Our Client Say</span></h1>
-            {{-- <h1 class="display-5 text-center mb-5 wow fadeInUp" data-wow-delay="0.1s">Our Clients Say!</h1> --}}
             <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
-                <div class="testimonial-item text-center">
-                    {{-- <img class="img-fluid rounded-circle border border-2 p-2 mx-auto mb-4" src="{{ asset('') }}landing/img/testimonial-1.jpg" style="width: 100px; height: 100px;"> --}}
-                    <div class="testimonial-text rounded text-center p-4">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore laborum iusto amet voluptatem molestiae quibusdam voluptatum architecto culpa. Beatae accusantium ipsa et nostrum illum nisi dignissimos alias, mollitia cumque eos!</p>
-                        <h5 class="mb-1">alim</h5>
-                        {{-- <span class="fst-italic">Profession</span> --}}
+                @foreach($testimonials as $testimonial)
+                    <div class="testimonial-item text-center">
+                        <div class="testimonial-text rounded text-center p-4">
+                            <p>{{ Str::limit($testimonial->MESSAGE_TEXT, 200) }}</p>
+                            <h5 class="mb-1">{{ $testimonial->CREATE_BY }}</h5>
+                        </div>
                     </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    {{-- <img class="img-fluid rounded-circle border border-2 p-2 mx-auto mb-4" src="{{ asset('') }}landing/img/testimonial-2.jpg" style="width: 100px; height: 100px;"> --}}
-                    <div class="testimonial-text rounded text-center p-4">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem necessitatibus iste similique ipsum voluptas ipsa. Fugit rem doloribus velit reprehenderit voluptatum non totam, minima earum quos, necessitatibus molestias accusantium ipsam.</p>
-                        <h5 class="mb-1">bowil</h5>
-                        {{-- <span class="fst-italic">Profession</span> --}}
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    {{-- <img class="img-fluid rounded-circle border border-2 p-2 mx-auto mb-4" src="{{ asset('') }}landing/img/testimonial-3.jpg" style="width: 100px; height: 100px;"> --}}
-                    <div class="testimonial-text rounded text-center p-4">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem necessitatibus iste similique ipsum voluptas ipsa. Fugit rem doloribus velit reprehenderit voluptatum non totam, minima earum quos, necessitatibus molestias accusantium ipsam.</p>
-                        <h5 class="mb-1">Abiddar</h5>
-                        {{-- <span class="fst-italic">Profession</span> --}}
-                    </div>
-                </div>
-                <div class="testimonial-item text-center">
-                    {{-- <img class="img-fluid rounded-circle border border-2 p-2 mx-auto mb-4" src="{{ asset('') }}landing/img/testimonial-3.jpg" style="width: 100px; height: 100px;"> --}}
-                    <div class="testimonial-text rounded text-center p-4">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorem necessitatibus iste similique ipsum voluptas ipsa. Fugit rem doloribus velit reprehenderit voluptatum non totam, minima earum quos, necessitatibus molestias accusantium ipsam.</p>
-                        <h5 class="mb-1">Vinno</h5>
-                        {{-- <span class="fst-italic">Profession</span> --}}
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
     <!-- Testimonial End -->
 
 @endsection
+
+
+@push('scripts')
+<script>
+    $(document).ready(function(){
+        $(".testimonial-carousel").owlCarousel({
+            autoplay: true,
+            smartSpeed: 1000,
+            margin: 25,
+            loop: true,
+            center: true,
+            dots: false,
+            nav: true,
+            navText : [
+                '<i class="bi bi-chevron-left"></i>',
+                '<i class="bi bi-chevron-right"></i>'
+            ],
+            responsive: {
+                0:{
+                    items:1
+                },
+                768:{
+                    items:2
+                },
+                992:{
+                    items:3
+                }
+            }
+        });
+    });
+</script>
+@endpush
