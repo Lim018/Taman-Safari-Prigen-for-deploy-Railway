@@ -10,60 +10,88 @@
             margin: 0;
             padding: 20px;
             color: #333;
+            background: #f5f5f5;
         }
         .ticket {
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            border: 2px solid #90C659;
+            border-radius: 12px;
             overflow: hidden;
             margin: 20px auto;
-            max-width: 900px;
+            max-width: 800px;
             background: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .ticket-header {
-            background: #90C659;
+            background: linear-gradient(135deg, #90C659 0%, #78a84b 100%);
             color: white;
-            padding: 15px 30px;
+            padding: 20px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .ticket-header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 28px;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
         }
         .ticket-body {
-            padding: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
         }
         .ticket-info {
-            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
         }
         .ticket-qr {
-            text-align: right;
-            margin-left: 30px;
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            border: 1px dashed #90C659;
         }
         .info-group {
-            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #90C659;
         }
         .info-group h2 {
-            margin: 0 0 5px 0;
-            font-size: 14px;
+            margin: 0 0 8px 0;
+            font-size: 13px;
             color: #666;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .info-group p {
             margin: 0;
-            font-size: 16px;
-            font-weight: bold;
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        .ticket-qr img {
+            margin-bottom: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .ticket-qr p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
         }
         .ticket-footer {
             text-align: center;
-            padding: 15px;
-            font-size: 12px;
+            padding: 20px;
+            font-size: 13px;
             color: #666;
-            border-top: 1px solid #ddd;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
         }
     </style>
 </head>
@@ -71,25 +99,15 @@
     <div class="ticket">
         <div class="ticket-header">
             <h1>{{ $purchasedTicket->content->TITLE }}</h1>
-            <div>This is your ticket</div>
+            <div style="font-size: 18px; font-weight: 500;">E-Ticket</div>
         </div>
         
         <div class="ticket-body">
             <div class="ticket-info">
-                {{-- <div class="info-group">
-                    <h2>Lokasi</h2>
-                    <p>{{ $purchasedTicket->content->LOCATION }}</p>
-                </div> --}}
-                
                 <div class="info-group">
                     <h2>Tanggal Kunjungan</h2>
                     <p>{{ $purchasedTicket->booking_date->format('d F Y') }}</p>
                 </div>
-
-                {{-- <div class="info-group">
-                    <h2>Issued To</h2>
-                    <p>{{ $purchasedTicket->user->NAMA_USER }}</p>
-                </div> --}}
 
                 <div class="info-group">
                     <h2>Ticket Number</h2>
@@ -108,13 +126,13 @@
             </div>
             
             <div class="ticket-qr">
-                <img src="data:image/png;base64,{{ $qrCode }}" width="200">
-                <p>Scan to confirm ticket</p>
+                <img src="data:image/png;base64,{{ $qrCode }}" width="180">
+                <p>Scan QR Code untuk konfirmasi tiket</p>
             </div>
         </div>
         
         <div class="ticket-footer">
-            &copy; {{ date('Y') }} {{ config('app.name') }}. All Rights Reserved.
+            &copy; {{ date('Y') }} {{ config('app.name') }}. All rights reserved.
         </div>
     </div>
 </body>
