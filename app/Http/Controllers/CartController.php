@@ -24,13 +24,18 @@ class CartController extends Controller
     {
         $request->validate([
             'ticket_id' => 'required|exists:contents,ID_KONTEN',
-            'adult_quantity' => 'required|integer|min:0',
-            'child_quantity' => 'required|integer|min:0',
+            'adult_quantity' => 'required|integer|min:1|max:10',
+            'child_quantity' => 'required|integer|min:0|max:10',
             'booking_date' => 'required|date|after_or_equal:today'
+        ], [
+            'adult_quantity.min' => 'Jumlah tiket dewasa minimal 1.',
+            'adult_quantity.max' => 'Jumlah tiket dewasa maksimal 10.',
+            'child_quantity.max' => 'Jumlah tiket anak maksimal 10.',
         ]);
 
+        // Ensure at least one ticket is selected
         if ($request->adult_quantity + $request->child_quantity === 0) {
-            return redirect()->back()->with('error', 'Please select at least one ticket.');
+            return redirect()->back()->with('error', 'Silahkan pilih minimal 1 tiket.');
         }
 
         $content = Content::findOrFail($request->ticket_id);
@@ -66,23 +71,44 @@ class CartController extends Controller
     public function update(Request $request, $id)
     {
         $cartItem = CartItem::findOrFail($id);
-        $newQuantity = max(0, $cartItem->quantity + $request->quantity);
-
-        if ($newQuantity === 0) {
-            $cartItem->delete();
+        $newQuantity = $cartItem->quantity + $request->quantity;
+        
+        // Apply min-max boundaries (1-10)
+        if ($newQuantity < 1) {
+            return response()->json(['error' => 'Jumlah tiket minimal 1'], 422);
+        } elseif ($newQuantity > 10) {
+            return response()->json(['error' => 'Jumlah tiket maksimal 10'], 422);
         } else {
             $cartItem->quantity = $newQuantity;
             $cartItem->save();
+            return response()->json(['success' => true]);
         }
-
-        return response()->json(['success' => true]);
     }
 
     public function remove($id)
     {
         CartItem::destroy($id);
-
         return response()->json(['success' => true]);
     }
+    
+    // Helper method to validate ticket quantity
+    private function validateTicketQuantity($quantity) 
+    {
+        // Apply BVA and ECP rules from report
+        if (!is_numeric($quantity)) {
+            return ['status' => false, 'message' => 'Input tidak valid. Harus berupa angka.'];
+        }
+        
+        $quantity = (int)$quantity;
+        
+        if ($quantity < 1) {
+            return ['status' => false, 'message' => 'Jumlah tiket minimal 1.'];
+        }
+        
+        if ($quantity > 10) {
+            return ['status' => false, 'message' => 'Jumlah tiket maksimal 10.'];
+        }
+        
+        return ['status' => true];
+    }
 }
-
