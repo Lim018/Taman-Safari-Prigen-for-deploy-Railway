@@ -15,13 +15,14 @@ use Carbon\Carbon;
 use App\Exports\StockExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
-// use PDF;
+use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
     protected $casts = [
         'date_transaction' => 'datetime',
     ];
+    
     public function landing()
     {
         $posts = Post::with(['user', 'likes', 'comments.user'])
@@ -38,22 +39,26 @@ class AuthController extends Controller
         $submenus = DB::table('MENU_LEVEL')->where('DELETE_MARK', '!=', '1')->get();
         
         return view('index', ['submenus' => $submenus, 'setting_menu_user' => $setting_menu_user, 'posts' => $posts]);
-
     }
+    
     public function index()
     {
         return view('auth.login');
     }
+    
     public function login(Request $request){
-        $validate =  $request->validate([
+        $validate = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
+        
         if(Auth::attempt($validate)){
             $request->session()->regenerate();
             return redirect()->intended('/');
         }
+        
         Session::flash('failed','Account not found');
+        return back()->withInput($request->except('password'));
     }
 
     public function logout(Request $request)
@@ -68,6 +73,7 @@ class AuthController extends Controller
     {
         return view('management.dashboard');
     }
+    
     public function showRegisterForm()
     {
         return view('auth.register');
@@ -80,7 +86,20 @@ class AuthController extends Controller
             'email' => 'required|string|email|max:100|unique:users,EMAIL',
             'name' => 'required|string|max:60',
             'phone' => 'required|string|max:30',
-            'password' => 'required|string|min:6|confirmed',
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                'min:8',               // Minimum 8 karakter (sesuai BVA-U-02)
+                'max:20',              // Maksimum 20 karakter (sesuai BVA-U-06)
+                'regex:/[a-z]/',       // Harus memiliki huruf kecil (sesuai ECP-U-04)
+                'regex:/[A-Z]/',       // Harus memiliki huruf besar (sesuai ECP-U-05)
+                'regex:/[0-9]/',       // Harus memiliki angka (sesuai ECP-U-06)
+            ],
+        ], [
+            'password.min' => 'Password harus minimal 8 karakter.',
+            'password.max' => 'Password tidak boleh lebih dari 20 karakter.',
+            'password.regex' => 'Password harus mengandung huruf besar, huruf kecil, dan angka.',
         ]);
 
         DB::table('users')->insert([
@@ -95,5 +114,39 @@ class AuthController extends Controller
         ]);
 
         return redirect()->route('login')->with('success', 'Registration successful, please login.');
+    }
+    
+    /**
+     * Fungsi validasi password sesuai dengan kriteria pengujian
+     * @param string $password
+     * @return array
+     */
+    private function validatePassword($password)
+    {
+        // Periksa panjang password (8-20 karakter)
+        if (strlen($password) < 8) {
+            return ['status' => false, 'message' => 'Password harus minimal 8 karakter.'];
+        }
+        
+        if (strlen($password) > 20) {
+            return ['status' => false, 'message' => 'Password tidak boleh lebih dari 20 karakter.'];
+        }
+        
+        // Periksa huruf besar
+        if (!preg_match('/[A-Z]/', $password)) {
+            return ['status' => false, 'message' => 'Password harus mengandung minimal 1 huruf besar.'];
+        }
+        
+        // Periksa huruf kecil
+        if (!preg_match('/[a-z]/', $password)) {
+            return ['status' => false, 'message' => 'Password harus mengandung minimal 1 huruf kecil.'];
+        }
+        
+        // Periksa angka
+        if (!preg_match('/[0-9]/', $password)) {
+            return ['status' => false, 'message' => 'Password harus mengandung minimal 1 angka.'];
+        }
+        
+        return ['status' => true];
     }
 }

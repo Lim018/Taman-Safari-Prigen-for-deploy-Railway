@@ -43,8 +43,6 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
-Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 
@@ -130,6 +128,8 @@ Route::middleware(['auth'])->group(function () {
     // Route::resource('content', ContentController::class);
     
 });
+
+Route::get('/testimonials/create', [TestimonialController::class, 'create'])->name('testimonials.create');
 Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
 Route::get('/ticket/confirm/{ticket}', [TicketConfirmationController::class, 'show'])->name('ticket.confirm');
 Route::post('/ticket/confirm/{ticket}', [TicketConfirmationController::class, 'confirm'])->name('ticket.confirm.post');
